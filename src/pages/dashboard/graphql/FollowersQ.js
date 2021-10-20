@@ -1,4 +1,6 @@
-const FollowersQ = `
+import { gql } from '@apollo/client';
+
+const FollowersQ = gql `
   query Followers($username: String!) {
     user(login: $username) {
       id
