@@ -1,40 +1,35 @@
-import { useEffect, useState } from 'react';
+import SimpleBar from 'simplebar-react';
+import useApi from '../../../useApi';
+import RepositoryCard from '../Card/Card';
 import './List.css';
 
-const initialState = {
-  error: undefined,
-  data: undefined,
-  loading: undefined,
-}
 
-export default function RepositoryList({
-  username
-}) {
-  const [state, setState] = useState(initialState);
-  const { data, error, loading } = state;
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${username}/repos?per_page=10&page=1`)
-      .then((r) => r.json())
-      .then((json) => {
-        setState({
-          ...initialState,
-          data: json,
-        });
-      })
-  }, [username]);
-
+export default function RepositoryList({ username }) {
+  const { data, error, loading } = useApi({
+    url: `https://api.github.com/users/${username}/repos?per_page=10&page=1`
+  });
   return (
     <div className="RepositoryList">
-      <h3>Repositories</h3>
-
-      <div className="RepositoryList__content">
-        {data?.map((repository) => (
-          <div key={repository.full_name}>
-            {repository.full_name}
-          </div>
-        ))}
-
-      </div>
+      <h3>
+        Repositories
+        {loading && <span>Loading...</span>}
+      </h3>
+      <SimpleBar style={{ maxHeight: 500 }}>
+        <div className="RepositoryList__content">
+          {error ? (
+            <div>
+              Algo de errado, não está certo!
+            </div>
+          ) : (
+            data?.map((repository) => (
+              <RepositoryCard
+                repo={repository}
+                key={repository.full_name}
+              />
+            ))
+          )}
+        </div>
+      </SimpleBar>
     </div>
   )
 }
