@@ -1,15 +1,15 @@
 import SimpleBar from 'simplebar-react';
 import "./List.css";
 
-export default function UserList( {title, children} ) {
+export default function UserList({ title, children }) {
   return (
-    <SimpleBar style={{ maxHeight: 500 }}>
-      <div className="UserList" >
-        <h3>{title}</h3>
+    <div className="UserList" >
+      <h3>{title}</h3>
+      <SimpleBar style={{ maxHeight: 500 }}>
         <ul className='UserList__content' >
-          {children} 
+          {children}
         </ul>
-      </div>
-    </SimpleBar>
+      </SimpleBar>
+    </div>
   )
 }
