@@ -14,10 +14,13 @@ export default function PagesDashboard() {
     () => window.localStorage.getItem('github_username') || ''
   );
 
-  const { data: followers, error: followerError } = useQuery(FollowersQ, {
+  const {
+    loading: loading,
+    data: followers,
+    error: followerError
+  } = useQuery(FollowersQ, {
     variables: {
       username,
-
     },
   });
 
@@ -27,7 +30,6 @@ export default function PagesDashboard() {
   } = useQuery(FollowingQ, {
     variables: {
       username,
-
     },
   });
 
@@ -48,7 +50,7 @@ export default function PagesDashboard() {
                 key={follower.id}
                 user={follower}
                 isSelected={selectedUser === follower.login}
-                onClick= { () => setSelectedUser(follower.login) }
+                onClick={() => setSelectedUser(follower.login)}
               />
             ))}
           </UserList>
@@ -58,7 +60,7 @@ export default function PagesDashboard() {
                 key={following.id}
                 user={following}
                 isSelected={selectedUser === following.login}
-                onClick= { () => setSelectedUser(following.login) }
+                onClick={() => setSelectedUser(following.login)}
               />
             ))}
           </UserList>
