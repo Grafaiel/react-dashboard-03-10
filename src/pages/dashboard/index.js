@@ -15,7 +15,6 @@ export default function PagesDashboard() {
   );
 
   const {
-    loading: loading,
     data: followers,
     error: followerError
   } = useQuery(FollowersQ, {
@@ -44,17 +43,18 @@ export default function PagesDashboard() {
         <div>Algo de errado</div>
       ) : (
         <section className='PagesDashboard__content'>
-          <UserList title="Followers">
+          <UserList title="Followers" loading={!following?.user.following.nodes.length}>
             {followers?.user.followers.nodes.map((follower) => (
               <UserCard
                 key={follower.id}
                 user={follower}
                 isSelected={selectedUser === follower.login}
                 onClick={() => setSelectedUser(follower.login)}
+                loading={!follower.length}
               />
             ))}
           </UserList>
-          <UserList title="Following">
+          <UserList title="Following" loading={!following?.user.following.nodes.length}>
             {following?.user.following.nodes.map((following) => (
               <UserCard
                 key={following.id}

@@ -4,10 +4,11 @@ import "./Card.css";
 
 export default function UserCard({ user, isSelected, onClick }) {
   return (
+    
     <li 
       onClick={ onClick }
       className={`UserCard ${isSelected && 'UserCard--selected'}`}
-    >
+      >
       <div className="Usercard__main-info">
         <h3>{user.name}</h3> <span> {user.login} </span>
       </div>

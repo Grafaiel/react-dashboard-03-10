@@ -11,7 +11,7 @@ export default function RepositoryList({ username }) {
   return (
     <div className="RepositoryList">
       <h3>
-        Repositories
+        Repositories 
         {loading && <span>Loading...</span>}
       </h3>
       <SimpleBar style={{ maxHeight: 500 }}>
