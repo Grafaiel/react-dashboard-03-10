@@ -2,10 +2,12 @@ import { useState } from "react";
 import UserList from '../../components/User/List/List';
 import UserCard from '../../components/User/Card/Card';
 import RepositoryList from '../../components/Repository/List/List';
+import RepositoryCard from '../../components/Repository/Card/Card';
 import FollowersQ from './graphql/FollowersQ';
 import FollowingQ from './graphql/FollowingQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
+import RepositoriesQ from './graphql/RepositoriesQ';
 
 
 export default function PagesDashboard() {
@@ -32,7 +34,16 @@ export default function PagesDashboard() {
     },
   });
 
-  const error = followerError || followingError;
+  const {
+    data: repositories,
+    error: repositoryError
+  } = useQuery(RepositoriesQ, {
+    variables: {
+      username,
+    },
+  });
+
+  const error = followerError || followingError || repositoryError;
 
   return (
     <div>
@@ -64,8 +75,13 @@ export default function PagesDashboard() {
               />
             ))}
           </UserList>
-          <RepositoryList username={selectedUser}>
-
+          <RepositoryList title="Repositories" loading={!repositories?.repositoryOwner.repositories.nodes.length} >
+            {repositories?.repositoryOwner.repositories.nodes.map((repositories) => (
+              <RepositoryCard
+                key={repositories.id}
+                repositories={repositories}
+              />
+            ))}
           </RepositoryList>
         </section>
       )}
