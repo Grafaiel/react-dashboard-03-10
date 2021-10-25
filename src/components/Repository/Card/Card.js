@@ -3,7 +3,7 @@ import "./Card.css";
 
 export default function RepositoryCard({ repo }) {
   return (
-    <div className="RepositoryCard">
+    <li className="RepositoryCard">
       <h3>{repo.name}</h3>
       <div className="RepositoryCard__additional-info">
         <span>
@@ -14,6 +14,6 @@ export default function RepositoryCard({ repo }) {
         </span>
         {repo.language && <span>{repo.language}</span>}
       </div>
-    </div>
+    </li>
   );
 }
