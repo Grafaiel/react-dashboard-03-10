@@ -26,3 +26,8 @@
 .RepositoryCard__additional-info > span svg {
   margin-right: 0.3rem;
 }
+
+.RepositoryCard:hover,
+.RepositoryCard--selected {
+  background-color: #282a36;
+}
