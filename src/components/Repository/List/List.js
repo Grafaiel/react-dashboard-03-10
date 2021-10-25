@@ -42,8 +42,10 @@ export default function RepositoryList({ username }) {
     }).then((r) => r.json())
       .then((data) => {
         setRepositories(data.data.repositoryOwner.repositories.nodes);
-      })
-  },[username])
+      }).catch((error) => {
+        setError(error)
+      });
+  }, [username])
 
   return (
     <div className="RepositoryList">
@@ -51,15 +53,19 @@ export default function RepositoryList({ username }) {
         Repositories
         {!repositories?.length && <span>Loading...</span>}
       </h3>
-      <SimpleBar style={{ maxHeight: 500 }}>
-        <ul className="RepositoryList__content">
+      {error ? (
+        <div>Algo de errado</div>
+      ) :
+        <SimpleBar style={{ maxHeight: 500 }}>
+          <ul className="RepositoryList__content">
 
-          {repositories?.map((repository) => (
-            <RepositoryCard key={repository.full_name} repo={repository} />
-          ))}
+            {repositories?.map((repository) => (
+              <RepositoryCard key={repository.full_name} repo={repository} />
+            ))}
 
-        </ul>
-      </SimpleBar>
+          </ul>
+        </SimpleBar>
+      }
     </div>
   );
 }
