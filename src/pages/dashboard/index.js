@@ -61,7 +61,6 @@ export default function PagesDashboard() {
                 user={follower}
                 isSelected={selectedUser === follower.login}
                 onClick={() => setSelectedUser(follower.login)}
-                loading={!follower.length}
               />
             ))}
           </UserList>
@@ -75,14 +74,7 @@ export default function PagesDashboard() {
               />
             ))}
           </UserList>
-          <RepositoryList title="Repositories" loading={!repositories?.repositoryOwner.repositories.nodes.length} >
-            {repositories?.repositoryOwner.repositories.nodes.map((repositories) => (
-              <RepositoryCard
-                key={repositories.id}
-                repositories={repositories}
-              />
-            ))}
-          </RepositoryList>
+          <RepositoryList username={selectedUser} />
         </section>
       )}
     </div>
