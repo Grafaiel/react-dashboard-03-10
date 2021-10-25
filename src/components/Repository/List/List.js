@@ -48,17 +48,17 @@ export default function RepositoryList({ username }) {
   return (
     <div className="RepositoryList">
       <h3>
-        {/* Repositories
-        {loading && <span>Loading...</span>} */}
+        Repositories
+        {!repositories?.length && <span>Loading...</span>}
       </h3>
       <SimpleBar style={{ maxHeight: 500 }}>
-        <div className="RepositoryList__content">
+        <ul className="RepositoryList__content">
 
           {repositories?.map((repository) => (
             <RepositoryCard key={repository.full_name} repo={repository} />
           ))}
 
-        </div>
+        </ul>
       </SimpleBar>
     </div>
   );
