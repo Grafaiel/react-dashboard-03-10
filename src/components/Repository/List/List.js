@@ -58,14 +58,39 @@ export default function RepositoryList({ username }) {
       ) :
         <SimpleBar style={{ maxHeight: 500 }}>
           <ul className="RepositoryList__content">
-
-            {repositories?.map((repository) => (
-              <RepositoryCard key={repository.full_name} repo={repository} />
-            ))}
-
+            {repositories?.map((repository) => {
+              return (
+                  <RepositoryCard key={repository.id} repo={repository} />
+              )
+            })}
           </ul>
         </SimpleBar>
       }
     </div>
   );
 }
+
+// # Type queries into this side of the screen, and you will 
+// # see intelligent typeaheads aware of the current GraphQL type schema, 
+// # live syntax, and validation errors highlighted within the text.
+
+// # We'll get you started with a simple query showing your username!
+// query Repositories {
+//           repositoryOwner (login: "grafaiel") {
+//             id
+//             repositories(first: 10) {
+//               totalCount
+//               pageInfo {
+//                 hasNextPage
+//                 endCursor
+//               }
+//               nodes {
+//                 id
+//                 name
+//                 stargazerCount
+//                 forkCount
+//                 primaryLanguage { name }
+//               }
+//             }
+//           }
+//         }
