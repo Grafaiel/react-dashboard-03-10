@@ -95,3 +95,32 @@ export default function RepositoryList({ username }) {
 //             }
 //           }
 //         }
+
+// query Repositories {
+//   repositoryOwner (login: "viniciusdacal") {
+//     id
+//     repositories(first: 10) {
+//       totalCount
+//       pageInfo {
+//         hasNextPage
+//         endCursor
+//       }
+//       nodes {
+//         id 
+//         name 
+//         stargazerCount
+//         forkCount
+//         primaryLanguage { name }
+//         issues (first: 10 ) {
+//           nodes {
+//             id
+//             title
+//             body
+//             resourcePath
+//           }
+          
+//         }
+//       }
+//     }
+//   }
+// }

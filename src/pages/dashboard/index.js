@@ -76,7 +76,7 @@ export default function PagesDashboard() {
             ))}
           </UserList>
           <RepositoryList username={selectedUser} />
-          <IssueList />
+          <IssueList username={selectedUser} />
         </section>
       )}
     </div>
