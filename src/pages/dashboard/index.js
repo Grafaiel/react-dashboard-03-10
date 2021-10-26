@@ -3,6 +3,7 @@ import UserList from '../../components/User/List/List';
 import UserCard from '../../components/User/Card/Card';
 import RepositoryList from '../../components/Repository/List/List';
 import RepositoryCard from '../../components/Repository/Card/Card';
+import IssueList from '../../components/Issue/List/List';
 import FollowersQ from './graphql/FollowersQ';
 import FollowingQ from './graphql/FollowingQ';
 import RepositoriesQ from './graphql/RepositoriesQ';
@@ -75,6 +76,7 @@ export default function PagesDashboard() {
             ))}
           </UserList>
           <RepositoryList username={selectedUser} />
+          <IssueList />
         </section>
       )}
     </div>

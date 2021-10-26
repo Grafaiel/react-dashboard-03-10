@@ -1,0 +1,13 @@
+.IssueList {
+  width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background-color: #44475a;
+}
+
+.IssueList > h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+}
