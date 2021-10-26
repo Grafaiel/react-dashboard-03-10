@@ -12,7 +12,7 @@ export default function RepositoryCard({ repo }) {
         <span>
           <GoRepoForked /> {repo.forkCount || 0}
         </span>
-        {/* {repo.primaryLanguage && <span>{repo.primaryLanguage}</span>} */}
+        {repo.primaryLanguage && <span>{repo.primaryLanguage.name}</span>}
       </div>
     </li >
   );
