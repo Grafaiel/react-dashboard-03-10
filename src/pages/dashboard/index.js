@@ -5,9 +5,9 @@ import RepositoryList from '../../components/Repository/List/List';
 import RepositoryCard from '../../components/Repository/Card/Card';
 import FollowersQ from './graphql/FollowersQ';
 import FollowingQ from './graphql/FollowingQ';
+import RepositoriesQ from './graphql/RepositoriesQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
-import RepositoriesQ from './graphql/RepositoriesQ';
 
 
 export default function PagesDashboard() {
