@@ -59,6 +59,7 @@ export default function RepositoryList({ username }) {
         <SimpleBar style={{ maxHeight: 500 }}>
           <ul className="RepositoryList__content">
             {repositories?.map((repository) => {
+              console.log(repository);
               return (
                   <RepositoryCard key={repository.id} repo={repository} />
               )
