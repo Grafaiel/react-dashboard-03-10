@@ -73,14 +73,17 @@ export default function PagesDashboard() {
             ))}
           </UserList>
           <RepositoryList title="Repository" loading={!repositories?.repositoryOwner.repositories.nodes.length} />
-          {repositories?.repositoryOwner.repositories.nodes.map((repository) => (
-            <RepositoryCard
-              key={repository.id}
-              repositoryOwner={repository}
-              isSelected={selectedUser === repository.name}
-              onClick={() => setSelectedUser(repository.name)}
-            />
-          ))}
+          {repositories?.repositoryOwner.repositories.nodes.map((repository) => {
+            console.log(repository);
+            return (
+              <RepositoryCard
+                key={repository.id}
+                repositoryOwner={repository}
+                isSelected={selectedUser === repository.name}
+                onClick={() => setSelectedUser(repository.name)}
+              />
+            )
+          })}
           <IssueList username={selectedUser} />
         </section>
       )}

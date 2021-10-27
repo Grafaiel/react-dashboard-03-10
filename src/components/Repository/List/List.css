@@ -1,19 +1,18 @@
 .RepositoryList {
-  width: 400px;
-  /* padding-right: 0.5rem; */
+  width: 500px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   background-color: #44475a;
 }
 
-.RepositoryList > h3 {
+.RepositoryList>h3 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   padding: 0 1rem;
 }
 
-.RepositoryList > h3 span {
+.RepositoryList>h3 span {
   font-size: 0.8rem;
   margin-left: 1rem;
 }
@@ -21,8 +20,6 @@
 .RepositoryList__content {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 0.3rem;
-  list-style: none;
-  margin: 0;
+  padding: 1rem;
 }

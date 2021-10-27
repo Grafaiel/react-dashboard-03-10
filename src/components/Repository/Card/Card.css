@@ -1,12 +1,10 @@
 .RepositoryCard {
   display: flex;
   flex-direction: column;
-  font-size: 0.9rem;
-  padding: 1rem;
   border: 1px solid #282a36;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 200ms;
+  font-size: 0.9rem;
+  padding: 1rem;
 }
 
 .RepositoryCard h3 {
@@ -20,15 +18,11 @@
   gap: 1rem;
 }
 
-.RepositoryCard__additional-info>span {
+.RepositoryCard__additional-info > span {
   display: flex;
   align-items: center;
 }
 
-.RepositoryCard__additional-info>span svg {
+.RepositoryCard__additional-info > span svg {
   margin-right: 0.3rem;
-}
-
-.RepositoryCard:hover, .RepositoryCard--selected {
-  background-color: #282a36;
 }
