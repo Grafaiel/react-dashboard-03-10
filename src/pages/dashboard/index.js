@@ -38,11 +38,7 @@ export default function PagesDashboard() {
   const {
     data: repositories,
     error: repositoryError
-  } = useQuery(RepositoriesQ, {
-    variables: {
-      username,
-    },
-  });
+  } = useQuery(RepositoriesQ);
 
   const error = followerError || followingError || repositoryError;
 
@@ -51,11 +47,12 @@ export default function PagesDashboard() {
       <header className='PagesDashboard__topbar'>
         {username}
       </header>
+      {error ? console.log(repositories?.repositoryOwner.nodes.length) : ''}
       {error ? (
         <div>Algo de errado</div>
       ) : (
         <section className='PagesDashboard__content'>
-          <UserList title="Followers" loading={!following?.user.following.nodes.length}>
+          <UserList title="Followers" loading={!followers?.user.followers.nodes.length}>
             {followers?.user.followers.nodes.map((follower) => (
               <UserCard
                 key={follower.id}
@@ -75,7 +72,15 @@ export default function PagesDashboard() {
               />
             ))}
           </UserList>
-          <RepositoryList username={selectedUser} />
+          <RepositoryList title="Repository" loading={!repositories?.repositoryOwner.repositories.nodes.length} />
+          {repositories?.repositoryOwner.repositories.nodes.map((repository) => (
+            <RepositoryCard
+              key={repository.id}
+              repositoryOwner={repository}
+              isSelected={selectedUser === repository.name}
+              onClick={() => setSelectedUser(repository.name)}
+            />
+          ))}
           <IssueList username={selectedUser} />
         </section>
       )}

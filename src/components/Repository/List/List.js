@@ -1,72 +1,19 @@
-import { useEffect, useState } from 'react';
 import SimpleBar from "simplebar-react";
-// import useApi from "../../../useApi";
-import RepositoryCard from "../Card/Card";
 import "./List.css";
 
 
-export default function RepositoryList({ username }) {
-  const [error, setError] = useState();
-  const [repositories, setRepositories] = useState([]);
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("github_token");
-    fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers: {
-        authorization: `bearer ${token}`,
-      },
-      body: JSON.stringify({
-        query: `
-        query Repositories {
-          repositoryOwner (login: "${username}") {
-            id
-            repositories(first: 10) {
-              totalCount
-              pageInfo {
-                hasNextPage
-                endCursor
-              }
-              nodes {
-                id
-                name
-                stargazerCount
-                forkCount
-                primaryLanguage { name }
-              }
-            }
-          }
-        }`,
-        variables: {},
-      })
-    }).then((r) => r.json())
-      .then((data) => {
-        setRepositories(data.data.repositoryOwner.repositories.nodes);
-      }).catch((error) => {
-        setError(error)
-      });
-  }, [username])
-
+export default function RepositoryList({ title, children, loading }) {
   return (
     <div className="RepositoryList">
       <h3>
-        Repositories
-        {!repositories?.length && <span>Loading...</span>}
+        {title}
+        {loading && <span>Loading...</span>}
       </h3>
-      {error ? (
-        <div>Algo de errado</div>
-      ) :
-        <SimpleBar style={{ maxHeight: 500 }}>
-          <ul className="RepositoryList__content">
-            {repositories?.map((repository) => {
-              console.log(repository);
-              return (
-                  <RepositoryCard key={repository.id} repo={repository} />
-              )
-            })}
-          </ul>
-        </SimpleBar>
-      }
+      <SimpleBar style={{ maxHeight: 500 }}>
+        <ul className="RepositoryList__content">
+          {children}
+        </ul>
+      </SimpleBar>
     </div>
   );
 }
@@ -118,7 +65,7 @@ export default function RepositoryList({ username }) {
 //             body
 //             resourcePath
 //           }
-          
+
 //         }
 //       }
 //     }
