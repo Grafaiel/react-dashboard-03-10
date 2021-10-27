@@ -55,7 +55,7 @@ export default function PagesDashboard() {
         <div>Algo de errado</div>
       ) : (
         <section className='PagesDashboard__content'>
-          <UserList title="Followers" loading={!following?.user.following.nodes.length}>
+          <UserList title="Followers" loading={!followers?.user.followers.nodes.length}>
             {followers?.user.followers.nodes.map((follower) => (
               <UserCard
                 key={follower.id}
