@@ -20,7 +20,7 @@ export default function UserCard({ user, isSelected, onClick }) {
            <BsBuilding /> {user.company} 
           </span>
         )}
-        {Boolean(user.locatio) && (
+        {Boolean(user.location) && (
           <span> 
             <BsGeoAlt /> {user.location} 
           </span>
