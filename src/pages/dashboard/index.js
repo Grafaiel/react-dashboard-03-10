@@ -11,8 +11,6 @@ import IssuesQ from './graphql/IssuesQ';
 import RepositoriesQ from './graphql/RepositoriesQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
-import { render } from '@testing-library/react';
-
 
 export default function PagesDashboard() {
   const [selectedUser, setSelectedUser] = useState(null);
