@@ -25,3 +25,14 @@ Link para o explorer da api. Você pode autenticar, escrever e testar suas queri
 Documentação da API GraphQL:
 
 [https://docs.github.com/en/graphql/reference/queries](https://docs.github.com/en/graphql/reference/queries)
+
+### execução
+- Registre uma aplicação https://github.com/settings/developers
+		- Application name => ex: name
+		- Homepage URL => http://localhost:3000
+		- Authorization callback URL => http://localhost:4000/oauth-callback
+		- Preencha .env
+
+-	yarn install na pasta api e raiz, após abra dois terminais:
+		- yarn start:api
+		- yarn start
