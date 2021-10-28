@@ -9,10 +9,12 @@ import FollowingQ from './graphql/FollowingQ';
 import RepositoriesQ from './graphql/RepositoriesQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
+import IssuesQ from './graphql/IssuesQ';
 
 
 export default function PagesDashboard() {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedRepo, setSelectedRepo] = useState(null);
   const [username] = useState(
     () => window.localStorage.getItem('github_username') || ''
   );
@@ -44,7 +46,14 @@ export default function PagesDashboard() {
     },
   });
 
-  const error = followerError || followingError || repositoryError;
+  const {
+    data: issues,
+    error: issuesError
+  } = useQuery(IssuesQ);
+
+
+
+  const error = followerError || followingError || repositoryError || issuesError;
 
   return (
     <div>
@@ -85,14 +94,14 @@ export default function PagesDashboard() {
                   <RepositoryCard
                     repository={repository}
                     key={repository.id}
-                    isSelected={selectedUser === repository.name}
-                    onClick={() => setSelectedUser(repository.name)}
+                    isSelected={selectedRepo === repository.name}
+                    onClick={() => setSelectedRepo(repository.name)}
                   />
                 )
               })
             ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
           </RepositoryList>
-          <IssueList username={selectedUser} />
+          <IssueList/>
         </section>
       )}
     </div>
