@@ -81,7 +81,6 @@ export default function PagesDashboard() {
           >
             {repositories?.repositoryOwner != null ? (
               repositories.repositoryOwner.repositories.nodes.map((repository) => {
-                console.log(repository);
                 return (
                   <RepositoryCard
                     repository={repository}
