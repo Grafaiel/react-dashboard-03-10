@@ -1,5 +1,8 @@
 # Atividade Desenvolvida na Aula de React com<a href="https://github.com/viniciusdacal"> Vinicius Dacal </a> 
 
+<p align = "center">
+	<img src ="./public/assets/img/projeto.gif">
+</p>
 
 ### Atividade final
 
