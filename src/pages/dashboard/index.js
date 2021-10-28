@@ -52,7 +52,7 @@ export default function PagesDashboard() {
         {username}
       </header>
       {error ? (
-        console.log(error)
+        <div> Algo de errado </div>
       ) : (
         <section className='PagesDashboard__content'>
           <UserList title="Followers" loading={!followers?.user.followers.nodes.length}>

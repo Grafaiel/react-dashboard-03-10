@@ -23,9 +23,3 @@ const RepositoriesQ = gql`
 `;
 
 export default RepositoriesQ;
-
-// query Repositories($user: String!) {
-//   repositoryOwner (login: $user) {
-
-  // query Repositories {
-  //   repositoryOwner (login: "grafaiel") {
