@@ -34,5 +34,5 @@ Documentação da API GraphQL:
 	- Preencha .env
 
 -	yarn install na pasta api e raiz, após abra dois terminais:
-		- yarn start:api
-		- yarn start
+	- yarn start:api
+	- yarn start
