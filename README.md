@@ -28,10 +28,10 @@ Documentação da API GraphQL:
 
 ### execução
 - Registre uma aplicação https://github.com/settings/developers
-		- Application name => ex: name
-		- Homepage URL => http://localhost:3000
-		- Authorization callback URL => http://localhost:4000/oauth-callback
-		- Preencha .env
+	- Application name => ex: name
+	- Homepage URL => http://localhost:3000
+	- Authorization callback URL => http://localhost:4000/oauth-callback
+	- Preencha .env
 
 -	yarn install na pasta api e raiz, após abra dois terminais:
 		- yarn start:api
