@@ -7,6 +7,11 @@
   padding: 1rem;
 }
 
+.RepositoryCard:hover,
+.RepositoryCard--selected {
+  background-color: #282a36;
+}
+
 .RepositoryCard h3 {
   margin-top: 0;
   white-space: inherit;
