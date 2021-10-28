@@ -1,4 +1,4 @@
-# Atividade Desenvolvida na Aula de React com o <a href="https://github.com/viniciusdacal"> Vinicius Dacal </a>
+# Atividade Desenvolvida na Aula de React com<a href="https://github.com/viniciusdacal"> Vinicius Dacal </a> 
 
 
 ### Atividade final
