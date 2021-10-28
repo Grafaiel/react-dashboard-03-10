@@ -38,7 +38,11 @@ export default function PagesDashboard() {
   const {
     data: repositories,
     error: repositoryError
-  } = useQuery(RepositoriesQ);
+  } = useQuery(RepositoriesQ, {
+    variables: {
+      user: selectedUser ? selectedUser : "",
+    },
+  });
 
   const error = followerError || followingError || repositoryError;
 
@@ -47,9 +51,8 @@ export default function PagesDashboard() {
       <header className='PagesDashboard__topbar'>
         {username}
       </header>
-      {error ? console.log(repositories?.repositoryOwner.nodes.length) : ''}
       {error ? (
-        <div>Algo de errado</div>
+        console.log(error)
       ) : (
         <section className='PagesDashboard__content'>
           <UserList title="Followers" loading={!followers?.user.followers.nodes.length}>
@@ -72,22 +75,24 @@ export default function PagesDashboard() {
               />
             ))}
           </UserList>
-          <RepositoryList 
+          <RepositoryList
             title="Repository"
-            loading={!repositories?.repositoryOwner.repositories.nodes.length}
+            loading={ selectedUser && repositories?.repositoryOwner == null}
           >
-            {repositories?.repositoryOwner.repositories.nodes.map((repository) => {
-              console.log(repository);
-              return (
-                <RepositoryCard
-                  key={repository.id}
-                  repositoryOwner={repository}
-                  isSelected={selectedUser === repository.name}
-                  onClick={() => setSelectedUser(repository.name)}
-                />
-              )
-            })}
-          </ RepositoryList>
+            {repositories?.repositoryOwner != null ? (
+              repositories.repositoryOwner.repositories.nodes.map((repository) => {
+                console.log(repository);
+                return (
+                  <RepositoryCard
+                    repository={repository}
+                    key={repository.id}
+                    isSelected={selectedUser === repository.name}
+                    onClick={() => setSelectedUser(repository.name)}
+                  />
+                )
+              })
+            ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
+          </RepositoryList>
           <IssueList username={selectedUser} />
         </section>
       )}

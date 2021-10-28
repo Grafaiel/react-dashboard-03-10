@@ -1,21 +1,21 @@
 import { GoStar, GoRepoForked } from "react-icons/go";
 import "./Card.css";
 
-export default function RepositoryCard({ repositoryOwner, isSelected, onClick }) {
+export default function RepositoryCard({ repository, isSelected, onClick }) {
   return (
     <li 
       onClick={ onClick }
       className={`RepositoryCard ${isSelected && 'RepositoryCard--selected'}`}
     > 
-      <h3>{repositoryOwner.name}</h3>
+      <h3>{repository.name}</h3>
       <div className="RepositoryCard__additional-info">
         <span>
-          <GoStar /> {repositoryOwner.stargazerCount || 0}
+          <GoStar /> {repository.stargazerCount || 0}
         </span>
         <span>
-          <GoRepoForked /> {repositoryOwner.forkCount || 0}
+          <GoRepoForked /> {repository.forkCount || 0}
         </span>
-        {repositoryOwner.primaryLanguage && <span>{repositoryOwner.primaryLanguage.name}</span>}
+        {repository.primaryLanguage && <span>{repository.primaryLanguage.name}</span>}
       </div>
     </li >
   );
