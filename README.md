@@ -13,10 +13,6 @@ Cada item da listagem de issues deve mostrar:
 - A descrição da issue (body)
 - Link para a issue no github (resourcePath)
 
-Fique a vontade para incluir outras informações que você achar relevante (author da issue, data de criação, labels, etc...).
-
-Publicar no github e enviar o link para viniciusldacal@gmail.com
-
 Referências:
 
 Link para o explorer da api. Você pode autenticar, escrever e testar suas queries GraphQL.
