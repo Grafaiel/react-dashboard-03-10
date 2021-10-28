@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
 const IssuesQ = gql`
-query Issues {
-  repositoryOwner(login: "gustavoguanabara") {
+query Issues ($querySelectedUser: String!, $repoName: String! ) {
+  repositoryOwner(login: $querySelectedUser) {
     id
-    repository(name: "html-css") {
+    repository(name: $repoName) {
       issues (first: 10 ){
         nodes {
           id

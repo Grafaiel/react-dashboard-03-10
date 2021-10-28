@@ -9,7 +9,7 @@ export default function IssueCard({ issue }) {
       <span className="IssueCard__headline"> {issue.body} </span>
       <div className="IssueCard__additional-info" >
         <span>
-          <a href={link}> <BsLink />Link</a>
+          <a href={link} target="_blank" rel="noreferrer"> <BsLink />Link</a>
         </span>
       </div>
     </li>

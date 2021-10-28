@@ -11,6 +11,7 @@ import IssuesQ from './graphql/IssuesQ';
 import RepositoriesQ from './graphql/RepositoriesQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
+import { render } from '@testing-library/react';
 
 
 export default function PagesDashboard() {
@@ -43,14 +44,19 @@ export default function PagesDashboard() {
     error: repositoryError
   } = useQuery(RepositoriesQ, {
     variables: {
-      user: selectedUser ? selectedUser : "",
+      querySelectedUser: selectedUser ? selectedUser : "",
     },
   });
 
   const {
     data: issues,
     error: issuesError
-  } = useQuery(IssuesQ);
+  } = useQuery(IssuesQ, {
+    variables: {
+      querySelectedUser: selectedUser ? selectedUser : "",
+      repoName: selectedRepo ? selectedRepo : "",
+    },
+  });
 
   const error = followerError || followingError || repositoryError || issuesError;
 
@@ -91,28 +97,30 @@ export default function PagesDashboard() {
               repositories.repositoryOwner.repositories.nodes.map((repository) => {
                 return (
                   <RepositoryCard
-                  repository={repository}
-                  key={repository.id}
+                    repository={repository}
+                    key={repository.id}
                     isSelected={selectedRepo === repository.name}
                     onClick={() => setSelectedRepo(repository.name)}
-                    />
-                    )
-                  })
-                  ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
+                  />
+                )
+              })
+            ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
           </RepositoryList>
           <IssueList
             title="Issues"
-            > 
-            {repositories?.repositoryOwner != null ? (
-              issues.repositoryOwner.repository.issues.nodes.map((issue) => {
-              // console.log(issues);
-              return (
-                <IssueCard
-                  issue={issue}
-                  key={issue.id}
-                />
-              )
-            })
+            loading={selectedRepo && issues?.repositoryOwner == null}
+          >
+            {issues?.repositoryOwner?.repository != null ? (
+              !issues.repositoryOwner.repository.issues.nodes.length ? (' Não há Issues neste repositório!'
+              ) : (
+                issues.repositoryOwner.repository.issues.nodes.map((issue) => {
+                  return (
+                    <IssueCard
+                      issue={issue}
+                      key={issue.id}
+                    />
+                  )
+                }))
             ) : 'Aguardando um repositório'}
           </IssueList>
         </section>

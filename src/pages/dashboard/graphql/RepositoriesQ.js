@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const RepositoriesQ = gql`
-  query Repositories($user: String!) {
-    repositoryOwner (login: $user) {
+  query Repositories($querySelectedUser: String!) {
+    repositoryOwner (login: $querySelectedUser) {
       id
       repositories(first: 10) {
         totalCount
