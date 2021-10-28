@@ -1,10 +1,16 @@
+import SimpleBar from "simplebar-react";
 import "./List.css";
 
-export default function IssueList () {
+export default function IssueList({ title, children }) {
 
   return (
     <div className="IssueList">
-      <h3> Issues </h3>
+      <h3> {title} </h3>
+      <SimpleBar style={{ maxHeight: 500 }}>
+        <ul className="IssueList__content" >
+          {children}
+        </ul>
+      </SimpleBar>
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function UserCard({ user, isSelected, onClick }) {
       <div className="Usercard__main-info">
         <h3>{user.name}</h3> <span> {user.login} </span>
       </div>
-      <span className="UserCard__underline" > {user.bio} </span>
+      <span className="UserCard__headline" > {user.bio} </span>
       
       <div className="UserCard__additional-info" >
         {Boolean(user.company) && (

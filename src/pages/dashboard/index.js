@@ -4,12 +4,13 @@ import UserCard from '../../components/User/Card/Card';
 import RepositoryList from '../../components/Repository/List/List';
 import RepositoryCard from '../../components/Repository/Card/Card';
 import IssueList from '../../components/Issue/List/List';
+import IssueCard from '../../components/Issue/Card/Card';
 import FollowersQ from './graphql/FollowersQ';
 import FollowingQ from './graphql/FollowingQ';
+import IssuesQ from './graphql/IssuesQ';
 import RepositoriesQ from './graphql/RepositoriesQ';
 import { useQuery } from '@apollo/client';
 import './dashboard.css'
-import IssuesQ from './graphql/IssuesQ';
 
 
 export default function PagesDashboard() {
@@ -51,8 +52,6 @@ export default function PagesDashboard() {
     error: issuesError
   } = useQuery(IssuesQ);
 
-
-
   const error = followerError || followingError || repositoryError || issuesError;
 
   return (
@@ -86,22 +85,36 @@ export default function PagesDashboard() {
           </UserList>
           <RepositoryList
             title="Repository"
-            loading={ selectedUser && repositories?.repositoryOwner == null}
+            loading={selectedUser && repositories?.repositoryOwner == null}
           >
             {repositories?.repositoryOwner != null ? (
               repositories.repositoryOwner.repositories.nodes.map((repository) => {
                 return (
                   <RepositoryCard
-                    repository={repository}
-                    key={repository.id}
+                  repository={repository}
+                  key={repository.id}
                     isSelected={selectedRepo === repository.name}
                     onClick={() => setSelectedRepo(repository.name)}
-                  />
-                )
-              })
-            ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
+                    />
+                    )
+                  })
+                  ) : 'Clique em um Usuário para ver os seus 10 primeiros repositórios.'}
           </RepositoryList>
-          <IssueList/>
+          <IssueList
+            title="Issues"
+            > 
+            {repositories?.repositoryOwner != null ? (
+              issues.repositoryOwner.repository.issues.nodes.map((issue) => {
+              // console.log(issues);
+              return (
+                <IssueCard
+                  issue={issue}
+                  key={issue.id}
+                />
+              )
+            })
+            ) : 'Aguardando um repositório'}
+          </IssueList>
         </section>
       )}
     </div>
